@@ -50,16 +50,16 @@ public class SpaceshipViewer {
                 spaceShip.move();
                 switch (moveKeyPressed){
                     case 1:
-                        spaceShip.accelerateY(1);
+                        spaceShip.acceleratePosY();
                         break;
                     case 2:
-                        spaceShip.accelerateY(-1);
+                        spaceShip.accelerateNegY();
                         break;
                     case 3:
-                        spaceShip.accelerateX(1);
+                        spaceShip.acceleratePosX();
                         break;
                     case 4:
-                        spaceShip.accelerateX(-1);
+                        spaceShip.accelerateNegX();
                         break;
                     default:
                         spaceShip.decelerate();

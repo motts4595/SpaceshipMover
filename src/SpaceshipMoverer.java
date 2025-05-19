@@ -2,16 +2,21 @@ public class SpaceshipMoverer {
 
     private int xSpeed;
     private int ySpeed;
-    private int speed;
-    private int x;
-    private  int y;
-    private final double dragCoefficient = .1;
+    private double inertia = .1; // between zero and one, higher is quicker slow down
+    private int acceleration;
+    private int fuelCap;
+    private int currentFuel = fuelCap;
+    private int fuelEfficiency;
+    private int count;
 //    private double turnAcceleration;
 //    private double turnSpeed;
     private double angle = (Math.PI/2);
     public RectangleComponent spaceShip = new RectangleComponent(50, 50);
 
 
+    public SpaceshipMoverer(){
+        //TODO set fuel stuff, acceleration, and inertia
+    }
     public void move(){
         spaceShip.move(xSpeed, ySpeed);
 //        System.out.printf("x: %d y: %d speed: %d accel: %d\n", xSpeed, ySpeed, speed, acceleration2);
@@ -24,29 +29,40 @@ public class SpaceshipMoverer {
         }else if(spaceShip.getPositionX() < 0){
             spaceShip.moveTo(975, spaceShip.getPositionY());
         }
-    }
-
-    public void turn(){
-
+        updateFuel();
     }
 
 
-    public void accelerateY(int acceleration){
+
+    public void updateFuel(){
+        if (count >= fuelEfficiency){
+            count = 0;
+            currentFuel--;
+        }else {
+            count ++;
+        }
+    }
+
+    public void acceleratePosY(){
         ySpeed += acceleration;
-//        System.out.println("hi");
-//        desaturate(false);
+
+    }
+    public void accelerateNegY(){
+        ySpeed += acceleration;
+
+    }    public void accelerateNegX(){
+        ySpeed += acceleration;
 
     }
 
-    public void accelerateX(int acceleration){
+    public void acceleratePosX(){
         xSpeed += acceleration;
-//        desaturate(false);
     }
 
 
     public void decelerate(){
-        int dragX = (int) (xSpeed * dragCoefficient);
-        int dragY = (int) (ySpeed * dragCoefficient);
+        int dragX = (int) (xSpeed * inertia);
+        int dragY = (int) (ySpeed * inertia);
         if(xSpeed != 0) {
             if (dragX == 0 && xSpeed > 0) {
                 xSpeed -= 1;
