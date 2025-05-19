@@ -1,5 +1,9 @@
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.swing.*;
+import javax.swing.text.html.ImageView;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class RectangleComponent extends JComponent {
 
@@ -10,6 +14,7 @@ public class RectangleComponent extends JComponent {
 
     private Rectangle box;
 
+
     public RectangleComponent(int WIDTH, int HEIGHT){
         box = new Rectangle(X, 0, WIDTH, HEIGHT);
     }
@@ -17,6 +22,7 @@ public class RectangleComponent extends JComponent {
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         g2.draw(box);
+
     }
 
     public void move(int dx, int dy){

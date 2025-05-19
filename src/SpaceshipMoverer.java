@@ -3,6 +3,8 @@ public class SpaceshipMoverer {
     private int xSpeed;
     private int ySpeed;
     private int speed;
+    private int x;
+    private  int y;
     private final double dragCoefficient = .1;
 //    private double turnAcceleration;
 //    private double turnSpeed;
@@ -41,26 +43,6 @@ public class SpaceshipMoverer {
 //        desaturate(false);
     }
 
-    private void desaturate(boolean decelerating){
-        if (decelerating){
-            xSpeed = (int) (speed * Math.cos(angle));
-            ySpeed = (int) (speed * Math.sin(angle));
-        }else {
-            speed = (int) Math.abs(Math.sqrt((Math.pow(xSpeed, 2)
-                    + Math.pow(ySpeed, 2))));
-            if (xSpeed != 0 && ySpeed != 0) {
-                angle = Math.atan(ySpeed / xSpeed);
-            } else if (xSpeed == 0 && ySpeed > 0) {
-                angle = Math.PI/2;
-            } else if (xSpeed == 0 && ySpeed < 0) {
-                angle = 3 * (Math.PI / 2);
-            } else if (ySpeed == 0 && xSpeed > 0) {
-                angle = 0;
-            } else if (ySpeed == 0 && xSpeed < 0) {
-                angle = Math.PI;
-            }
-        }
-    }
 
     public void decelerate(){
         int dragX = (int) (xSpeed * dragCoefficient);
