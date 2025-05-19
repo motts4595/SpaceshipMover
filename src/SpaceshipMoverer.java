@@ -18,18 +18,20 @@ public class SpaceshipMoverer {
         //TODO set fuel stuff, acceleration, and inertia
     }
     public void move(){
-        spaceShip.move(xSpeed, ySpeed);
+        if(currentFuel > 0) {
+            spaceShip.move(xSpeed, ySpeed);
 //        System.out.printf("x: %d y: %d speed: %d accel: %d\n", xSpeed, ySpeed, speed, acceleration2);
-        if (spaceShip.getPositionX() >= 1000){
-            spaceShip.moveTo(0, spaceShip.getPositionY());
-        } else if (spaceShip.getPositionY() >= 1000) {
-            spaceShip.moveTo(spaceShip.getPositionX(), 0);
-        } else if (spaceShip.getPositionY() < 0) {
-            spaceShip.moveTo(spaceShip.getPositionX(), 975);
-        }else if(spaceShip.getPositionX() < 0){
-            spaceShip.moveTo(975, spaceShip.getPositionY());
+            if (spaceShip.getPositionX() >= 1000) {
+                spaceShip.moveTo(0, spaceShip.getPositionY());
+            } else if (spaceShip.getPositionY() >= 1000) {
+                spaceShip.moveTo(spaceShip.getPositionX(), 0);
+            } else if (spaceShip.getPositionY() < 0) {
+                spaceShip.moveTo(spaceShip.getPositionX(), 975);
+            } else if (spaceShip.getPositionX() < 0) {
+                spaceShip.moveTo(975, spaceShip.getPositionY());
+            }
+            updateFuel();
         }
-        updateFuel();
     }
 
 
